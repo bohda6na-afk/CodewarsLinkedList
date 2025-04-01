@@ -1,7 +1,6 @@
 def loop_size(start):
     a = start
     b = start
-    
     while b and b.next:
         a = a.next
         b = b.next.next
