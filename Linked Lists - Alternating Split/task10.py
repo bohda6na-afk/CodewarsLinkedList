@@ -1,29 +1,24 @@
-class Node(object):
+class Node:
     def __init__(self, data=None):
         self.data = data
         self.next = None
-    
-class Context(object):
+
+class Context:
     def __init__(self, first, second):
         self.first = first
         self.second = second
-    
+
 def alternating_split(head):
-    # Your code goes here.
-    # Remember to return the context.
-    if head is None or head.next is None:
+    if not head or not head.next:
         raise ValueError
-
-    first_head = head
-    second_head = head.next
-
-    first_probe = first_head
-    second_probe = second_head
-    while first_probe is not None and second_probe is not None:
-        first_probe.next = second_probe.next
-        first_probe = first_probe.next
-        
-        if first_probe is not None:
-            second_probe.next = first_probe.next
-            second_probe = second_probe.next
-    return Context(first_head, second_head)
+    first = head
+    second = head.next
+    a = first
+    b = second
+    while b and b.next:
+        a.next = b.next
+        a = a.next
+        b.next = a.next
+        b = b.next
+    a.next = None
+    return Context(first, second)
